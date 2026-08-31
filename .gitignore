@@ -58,3 +58,11 @@ Thumbs.db
 *.tmp
 tmp/
 temp/
+
+# Storybook
+storybook-static/
+
+# Changesets
+.changeset/*.md
+!.changeset/README.md
+!.changeset/config.json

@@ -1,0 +1,219 @@
+/**
+ * AtomicBytes design tokens
+ * Source of truth for the design system site and (soon) the marketing rebuild.
+ *
+ * Mood: mid-century atomic optimism / toy workshop / risograph —
+ * inks on warm paper, not neon on black.
+ *
+ * Themes: light is cream paper (default). Dark is "night paper" —
+ * a warm ink field with cream type. Accents stay stickers.
+ *
+ * Retired forever: #0b0c10, cyan #63e6ff, violet #a78bfa, pink #ff5fd1, Inter, glass.
+ *
+ * Accents (coral, mint, cobalt, yolk) behave like inks / stickers / stamps:
+ * they fill shapes that keep an ink outline. Do not use mint or yolk as text.
+ * Pair every accent fill with --on-accent / --print-ink (warm near-black).
+ * Never put --ink on a sticker in dark theme: --ink becomes cream and fails WCAG.
+ *
+ * Theming: color custom properties swap under [data-theme="dark"].
+ * An explicit data-theme wins over prefers-color-scheme.
+ * Type, space, radius, stroke, and motion do not change with theme.
+ */
+
+:root {
+  /* ---------- Color (light / cream paper — default) ---------- */
+  /* Paper is cream with fiber, never flat white. Ink is warm near-black. */
+  --paper: #F6F1E8;
+  --paper-shade: #EBE4D6;
+  --ink: #1C1915;
+  --muted: #5A544A;
+  --line: #1C1915;
+  --coral: #FF5B3C;
+  --mint: #2EE6A6;
+  --cobalt: #4B6BFF;
+  --yolk: #FFD84A;
+  --surface: #FFFBF3;
+  --surface-inset: #E8E0D0;
+
+  /* Print constants — never invert. Raster mascots sit on cream. */
+  --print-ink: #1C1915;
+  --print-paper: #F6F1E8;
+  --mascot-field: var(--print-paper);
+
+  /* Code slabs — warm ink, not VS Code purple. Paper type on ink reads AAA. */
+  --code-bg: #1C1915;
+  --code-fg: #F6F1E8;
+  --code-comment: #C4B8A8;
+  --code-keyword: #4B6BFF;   /* cobalt */
+  --code-string: #2EE6A6;    /* mint */
+  --code-fn: #FF5B3C;        /* coral */
+  --code-num: #FFD84A;       /* yolk */
+
+  /* Semantic aliases — prefer these in components */
+  --bg: var(--paper);
+  --text: var(--ink);
+  --text-muted: var(--muted);
+  --accent: var(--coral);     /* primary CTA, rubber stamps */
+  --accent-2: var(--cobalt);  /* focus rings, marker underlines */
+  --accent-3: var(--mint);    /* strips, collab marks */
+  --accent-4: var(--yolk);    /* stickers, atom nucleus */
+  --danger: var(--coral);
+  --success: var(--mint);     /* sticker accent for success — not body text */
+  --warning: var(--yolk);     /* sticker accent for warning — not body text */
+  --focus: var(--cobalt);
+  --on-accent: var(--print-ink); /* type on sticker fills; never invert */
+
+  /* Form helper text stays --ink / --muted for WCAG.
+     State color lives on the border, focus ring, and message mark — not the sentence. */
+
+  /* Derived hairlines / grain — follow --ink so they invert in dark */
+  --hairline: color-mix(in srgb, var(--ink) 22%, transparent);
+  --rule: color-mix(in srgb, var(--ink) 35%, transparent);
+  --grid-x: color-mix(in srgb, var(--ink) 6%, transparent);
+  --grid-y: color-mix(in srgb, var(--ink) 5%, transparent);
+  --grain-blend: multiply;
+  --grain-opacity: 0.12;
+
+  color-scheme: light;
+
+  /* ---------- Type ---------- */
+  --font-brand: "Sixtyfour Convergence", ui-monospace, "Cascadia Mono", monospace;
+  --font-display: "Fraunces", "Iowan Old Style", Palatino, Georgia, serif;
+  --font-body: "Figtree", "Source Sans 3", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  --fs-xs: 0.75rem;    /* 12 */
+  --fs-sm: 0.875rem;   /* 14 */
+  --fs-md: 1rem;       /* 16 */
+  --fs-lg: 1.125rem;   /* 18 */
+  --fs-xl: 1.375rem;   /* 22 */
+  --fs-2xl: 1.75rem;   /* 28 */
+  --fs-3xl: 2.375rem;  /* 38 */
+  --fs-4xl: 3.5rem;    /* 56 */
+  --fs-hero: clamp(2.5rem, 6.4vw, 5.15rem);
+
+  --lh-tight: 1.05;
+  --lh-snug: 1.22;
+  --lh-body: 1.55;
+  --lh-loose: 1.7;
+
+  --tracking-brand: 0.02em;
+  --tracking-label: 0.08em;
+
+  /* ---------- Space (4 / 8 / 12 / 16 / 24 / 32 / 48 / 64) ---------- */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* ---------- Radius ---------- */
+  /* Chunky, slightly irregular. Prefer --radius-chunky on buttons. */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-chunky: 18px 24px 16px 22px;
+  --radius-pill: 999px;
+
+  /* ---------- Stroke ---------- */
+  --stroke-thin: 1.5px;
+  --stroke: 2.5px;
+  --stroke-thick: 3.5px;
+  --shadow-stamp: 3px 3px 0 var(--ink);
+  --shadow-stamp-hover: 4px 4px 0 var(--ink);
+  --shadow-stamp-press: 1px 1px 0 var(--ink);
+
+  /* ---------- Layout ---------- */
+  /* DS chrome helpers — this documentation site, not the marketing page. */
+  --wrap: min(1080px, calc(100% - 48px));
+  --nav-width: 220px;
+  --ds-max: 1440px;
+  --tap: 44px;              /* min touch target */
+  --nav-sticky-h: 6.5rem;   /* mobile stacked header; desk uses side-nav */
+
+  /* Marketing measures — steal these for atomicbytes.com. */
+  --content-narrow: 38rem;  /* ~36–40rem; readable body / lede measure */
+  --content: 56rem;         /* default marketing column */
+  --content-wide: 72rem;    /* heroes, project grids — not every band */
+
+  /* Vertical section padding — mobile-first, grows with the viewport. */
+  --section-y-sm: clamp(2rem, 5vw, 3rem);     /* tight bands, footers */
+  --section-y-md: clamp(3rem, 8vw, 5rem);     /* default marketing section */
+  --section-y-lg: clamp(4.5rem, 12vw, 8rem);  /* heroes, opening breath */
+
+  /* Marketing sticky header (not the DS side-nav). */
+  --header-h: 4.5rem;
+
+  /* ---------- Motion ---------- */
+  /* Orbits stay slow and linear. Stamp hover is a 1–2px lift, not a bounce. */
+  --orbit-fast: 18s;
+  --orbit-mid: 22s;
+  --orbit-slow: 24s;
+  --motion-lift: 1px;
+  --motion-lift-card: 2px;
+}
+
+/*
+ * Night paper — mid-century darkroom, not neon SaaS.
+ * Field is warm ink; type is soft cream; stickers stay coral/mint/cobalt/yolk.
+ * Outlines and stamp shadows follow --ink (now cream).
+ */
+:root[data-theme="dark"] {
+  --paper: #241F18;
+  --paper-shade: #1C1813;
+  --ink: #F3EDE2;
+  --muted: #C4BAAE;
+  --line: #E8DFD0;
+  --coral: #FF5B3C;
+  --mint: #2EE6A6;
+  --cobalt: #8AA0FF; /* lightened so 16px type hits WCAG AA on paper/surface */
+  --yolk: #FFD84A;
+  --surface: #2F2921;
+  --surface-inset: #1A1611;
+
+  --code-bg: #16130F;
+  --code-fg: #F3EDE2;
+  --code-comment: #A89F92;
+  --code-keyword: #8AA0FF;
+  --code-string: #2EE6A6;
+  --code-fn: #FF5B3C;
+  --code-num: #FFD84A;
+
+  --grain-blend: overlay;
+  --grain-opacity: 0.10;
+
+  color-scheme: dark;
+}
+
+/* OS preference only when the user has not pinned Light. Explicit Dark is above. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #241F18;
+    --paper-shade: #1C1813;
+    --ink: #F3EDE2;
+    --muted: #C4BAAE;
+    --line: #E8DFD0;
+    --coral: #FF5B3C;
+    --mint: #2EE6A6;
+    --cobalt: #8AA0FF;
+    --yolk: #FFD84A;
+    --surface: #2F2921;
+    --surface-inset: #1A1611;
+
+    --code-bg: #16130F;
+    --code-fg: #F3EDE2;
+    --code-comment: #A89F92;
+    --code-keyword: #8AA0FF;
+    --code-string: #2EE6A6;
+    --code-fn: #FF5B3C;
+    --code-num: #FFD84A;
+
+    --grain-blend: overlay;
+    --grain-opacity: 0.10;
+
+    color-scheme: dark;
+  }
+}
