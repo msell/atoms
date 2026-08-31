@@ -76,17 +76,7 @@ const atomicbytesPreset: Partial<Config> = {
         mono: 'var(--font-mono)',
       },
 
-      fontSize: {
-        xs: 'var(--fs-xs)',
-        sm: 'var(--fs-sm)',
-        md: 'var(--fs-md)',
-        lg: 'var(--fs-lg)',
-        xl: 'var(--fs-xl)',
-        '2xl': 'var(--fs-2xl)',
-        '3xl': 'var(--fs-3xl)',
-        '4xl': 'var(--fs-4xl)',
-        hero: 'var(--fs-hero)',
-      },
+      // fontSize moved to @theme directive in CSS for Tailwind v4 compatibility
 
       lineHeight: {
         tight: 'var(--lh-tight)',
