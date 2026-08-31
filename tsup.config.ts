@@ -13,6 +13,4 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom'],
-  // Copy tokens.css to dist
-  onSuccess: 'cp src/tokens.css dist/tokens.css',
 })
