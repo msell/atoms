@@ -9,7 +9,7 @@ module.exports = defineConfig({
     'tailwind.preset': 'src/tailwind.preset.ts',
   },
   format: ['esm'],
-  dts: true,
+  dts: false, // Disabled until tsup supports TypeScript 7
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom'],
